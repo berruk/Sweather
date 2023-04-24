@@ -1,1 +1,1 @@
-{"name":"sweather-app","version":"1.0.0","scripts":{"start-server":"cd server && nodemon index.js","start-client":"cd client && npm start"},"dependencies":{"dotenv":"^16.0.3","react-redux":"^8.0.5","react-router-dom":"^6.10.0"}}
+{"name":"sweather-app","version":"1.0.0","scripts":{"start-server":"cd server && nodemon index.js","start-client":"cd client && npm start"},"dependencies":{"dotenv":"^16.0.3","jwt-decode":"^3.1.2","react-redux":"^8.0.5","react-router-dom":"^6.10.0","redux-toolkit":"^1.1.2"}}

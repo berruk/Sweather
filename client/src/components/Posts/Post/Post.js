@@ -24,13 +24,13 @@ const Post = ({post, setCurrentId}) => {
                 <Button style = {{color:'white'}} 
                 size="small" 
                 onClick={() => setCurrentId(post._id)}> 
-                    <MoreHorizIcon fontSize="default"/>
+                    <MoreHorizIcon fontSize="medium"/>
                 </Button>
             </div>
             <div>
                 <Typography variant="body2" color="textSecondary"> {post.tags.map((tag) => `#${tag} `)}</Typography>
             </div>
-            <Typography className={classes.title} variant="58" color="textSecondary"> {post.title}</Typography>
+            <Typography className={classes.title} variant="h5" color="textSecondary"> {post.title}</Typography>
             <CardContent>
                 <Typography variant="h5" gutterBottom> {post.message}</Typography>
             </CardContent>
