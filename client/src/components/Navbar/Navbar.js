@@ -4,10 +4,12 @@ import sweather from '../../images/sweather.png';
 import useStyles from './styles';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from "react-redux"
+import { parse } from "dotenv";
 
 const Navbar = () => {
     const classes = useStyles();
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const [displayName, setDisplayName] = useState('');
     const dispatch = useDispatch();
     const history = useHistory();
     const location = useLocation();
@@ -22,9 +24,23 @@ const Navbar = () => {
     useEffect(() =>  
     {
         if (localStorage.getItem('profile'))
-           setUser(JSON.parse(localStorage.getItem('profile')));
+        {
+            const parsedUser = JSON.parse(localStorage.getItem('profile'));
+            
+            if (parsedUser.hasOwnProperty('userObject')){
+                setDisplayName(parsedUser?.userObject?.given_name + " " + parsedUser?.userObject?.family_name);
+            }
+            else
+            {
+                setDisplayName(parsedUser.result.name);
+            }
+            
+            setUser(parsedUser);
+        }
+           
     }, [location]);
 
+    
     return (
     <AppBar className = {classes.appBar} position = "static" color="inherit">
         <div className={classes.brandContainer}>
@@ -36,11 +52,11 @@ const Navbar = () => {
                 user?
                 (
                     <div className={classes.profile}>
-                        <Avatar className={classes.purple} alt={user.userObject.given_name}>                 
-                            {user.userObject.given_name.charAt(0) + user.userObject.family_name.charAt(0)}                      
+                        <Avatar className={classes.purple} >                 
+                        {displayName.charAt(0)}  
                         </Avatar>
                         <Typography className={classes.userName} variant="h6">
-                        {user.userObject.given_name + " " + user.userObject.family_name} 
+                        {displayName} 
                         </Typography>
                         <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
                     </div>

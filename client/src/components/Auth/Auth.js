@@ -6,24 +6,46 @@ import Input from './Input';
 import jwtDecode from 'jwt-decode';
 import { useDispatch } from 'react-redux';
 import {useHistory} from 'react-router-dom';
+import {signIn, signUp} from '../../actions/auth';
+
+const initValues = {
+    firstName : '', lastName : '', email : '', password: '', confirmPassword: ''
+}
 
 const Auth = () => {
     const classes = useStyles();
     const [showPassword, setShowPassword] = useState(false);
-    const [signUp, setIsSignUp] = useState(false);
+    const [isSignUp, setIsSignUp] = useState(false);
+    const [formValues, setFormValues] = useState(initValues);
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const handleSubmit = () => {};
-    const handleChange = () => {};
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        if (isSignUp)
+        {
+            dispatch(signUp(formValues, history));
+        }
+        else
+        {
+            dispatch(signIn(formValues, history));
+        }
+    };
+
+    const handleChange = (event) => {
+        setFormValues({...formValues, [event.target.name] : event.target.value });
+    };
+
     const handleShowPassword = () => setShowPassword((prevState) => !prevState);
     const switchMode = () => {
         setIsSignUp((prevState) => !prevState);
-        handleShowPassword(false);
+        setShowPassword(false);
     };
 
     const handleGoogleCallback = async (res) => {
         var userObject = jwtDecode(res?.credential);
+        console.log(userObject);
         try {
             dispatch( { type: 'AUTH', data : {userObject}})
             history.push('/');
@@ -54,11 +76,11 @@ const Auth = () => {
             <Avatar className={classes.avatar}>
                 <LockOutlined/>
             </Avatar>
-            <Typography variant='h5'>{signUp ? 'Sign Up' : 'Sign in'}</Typography>
+            <Typography variant='h5'>{isSignUp ? 'Sign Up' : 'Sign in'}</Typography>
             <form className={classes.form} onSubmit={handleSubmit}>
                 <Grid container spacing={2}>
                     {
-                        signUp &&
+                        isSignUp &&
                         (
                             <>
                                 <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half/>   
@@ -70,18 +92,17 @@ const Auth = () => {
                     <Input name="password" label="Password" handleChange={handleChange} 
                     type = {showPassword ? "text" : "password"} 
                     handleShowPassword={handleShowPassword} />   
-                    {signUp && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} 
+                    {isSignUp && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} 
                     type = "password"/>   }
-                </Grid>
-               
+                </Grid>               
                 <Button type = "submit" fullWidth variant='contained' color='primary' className={classes.submit}>
-                    {signUp ? "Sign Up" : "Sign In"}
+                    {isSignUp ? "Sign Up" : "Sign In"}
                 </Button>
                 <div id="googleSignIn"></div>
                 <Grid container justifyContent="flex-end">
                     <Button onClick={switchMode}>
                         {
-                            signUp ? "Sign In" : "Don't have an account, Sign Up"
+                            isSignUp ? "Sign In" : "Don't have an account, Sign Up"
                         }
                     </Button>
                 </Grid>

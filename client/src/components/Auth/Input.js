@@ -9,7 +9,7 @@ const Input = ({name, handleChange, label, half, autoFocus, type, handleShowPass
         <TextField 
         name={name} 
         label={label} 
-        handleChange={handleChange} 
+        onChange={handleChange} 
         required 
         fullWidth 
         autoFocus={autoFocus}
