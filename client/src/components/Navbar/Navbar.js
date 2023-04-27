@@ -58,13 +58,13 @@ const Navbar = () => {
                         <Typography className={classes.userName} variant="h6">
                         {displayName} 
                         </Typography>
-                        <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
+                        <Button variant="contained" className={classes.logout} onClick={logout}>Logout</Button>
                     </div>
                 )
                 :
                 (
                     <div>
-                        <Button component = {Link} to="/auth" color="primary">Login</Button>
+                        <Button variant="contained" component = {Link} to="/auth" style={{background : '#d1e6e3'}} className={classes.logout}>Login</Button>
                     </div>
                 )
             }
