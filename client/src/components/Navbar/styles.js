@@ -1,9 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { deepPurple } from '@material-ui/core/colors';
+import { cyan } from '@material-ui/core/colors';
 
 export default makeStyles((theme) => ({
   appBar: {
-    borderRadius: 15,
+    borderRadius: 150,
     margin: '30px 0',
     display: 'flex',
     flexDirection: 'row',
@@ -15,10 +15,11 @@ export default makeStyles((theme) => ({
     },
   },
   heading: {
-    color: theme.palette.primary.main,
+    color: '#96a8a7',
     textDecoration: 'none',
     fontSize: '2em',
     fontWeight: 300,
+    font : 'Optima'
   },
   image: {
     marginLeft: '10px',
@@ -35,7 +36,7 @@ export default makeStyles((theme) => ({
   profile: {
     display: 'flex',
     justifyContent: 'space-between',
-    width: '400px',
+    width: '300px',
     alignItems: 'center',
     [theme.breakpoints.down('sm')]: {
       width: 'auto',
@@ -44,7 +45,8 @@ export default makeStyles((theme) => ({
     },
   },
   logout: {
-    marginLeft: '20px',
+    marginLeft: '5px',
+    background : '#f2f2f2'
   },
   userName: {
     display: 'flex',
@@ -56,7 +58,7 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
   },
   purple: {
-    color: theme.palette.getContrastText(deepPurple[500]),
-    backgroundColor: deepPurple[500],
+    color: theme.palette.getContrastText(cyan[50]),
+    backgroundColor: cyan[50],
   },
 }));
