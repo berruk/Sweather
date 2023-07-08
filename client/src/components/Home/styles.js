@@ -7,6 +7,13 @@ export default makeStyles((theme) => ({
     display: 'flex',
     padding: '16px',
   },
+  weatherDisplay: {
+    borderRadius: 44,
+    marginBottom: '1rem',
+    display: 'block',
+    padding: '8px',
+    maxWidth: '100%', // Set a maximum width of 100%
+  },
   pagination: {
     borderRadius: 4,
     marginTop: '1rem',

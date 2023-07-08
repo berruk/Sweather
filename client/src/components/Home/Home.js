@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import Posts from '../Posts/Posts'
 import Form from '../Form/Form'
+import Weather from '../Weather/Weather'
 import { Container, Grow, Grid, Paper, AppBar, TextField, Button} from '@material-ui/core';
-import { ChipInput } from 'material-ui-chip-input';
 import { useHistory, useLocation } from 'react-router-dom'
 import  { useDispatch } from 'react-redux'
-import { getPosts } from '../../actions/posts';
+import { getPosts, getPostsBySearch } from '../../actions/posts';
+import { getWeather } from '../../actions/weather';
 import { Paginate} from '../Pagination/Pagination';
-import App from '../../App';
 import useStyles from './styles'
 function useQuery()
 {
@@ -28,24 +28,27 @@ const Home = () =>
         dispatch(getPosts());
     }, [currentId, dispatch]);
 
+    useEffect(() => {
+        dispatch(getWeather());
+    }, [dispatch]);
+
     const handleKeyPress = (event) =>
     {
         if(event.key === 'Enter') 
         {
-            console.log('enet');
             searchPost();
         }
-        else{
-            history.push('/');
-        }
+
     }
 
     const searchPost = () =>
     {
-
         if(search.trim())
         {
-            //dispatch fetch search post
+            dispatch(getPostsBySearch({search}))
+        }
+        else{
+            history.push('/');
         }
     }
     return (
@@ -57,6 +60,9 @@ const Home = () =>
                     <Posts setCurrentId = {setCurrentId}/>
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}> 
+                    <AppBar className={classes.weatherDisplay} position='static' color='inherit'>
+                    <Weather/>                 
+                    </AppBar>
                     <AppBar className={classes.appBarSearch} position='static' color='inherit'>
                     <TextField 
                         name="search" 
@@ -68,7 +74,7 @@ const Home = () =>
                         onChange={(event) => setSearch(event.target.value)} />
                     <Button  variant="contained" size="small"  
                     style={{background : '#d1e6e3', margin: '10px 0', borderRadius: '15px',}} 
-                    onClick={searchPost} fullWidth> Search</Button>
+                    onClick={searchPost} fullWidth> Search</Button>                   
                     </AppBar>
                     <Form setCurrentId = {setCurrentId} currentId = {currentId}/>
                     <Paper >

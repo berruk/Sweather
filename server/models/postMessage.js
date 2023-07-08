@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+import axios from 'axios';
+import mongoose from 'mongoose';
 
 const postSchema = mongoose.Schema({
     title : String,
