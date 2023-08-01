@@ -26,7 +26,8 @@ export const getPostsBySearch = (query) => async (dispatch) =>
 export const createPost = (post) => async (dispatch) => {
 
     try{
-        const { data } = await api.createPost(post);
+        const creator = localStorage.getItem('profile');
+        const { data } = await api.createPost({post: post, creator: creator});
 
         dispatch({type: ActionTypes.CREATE, payload : data});
     }

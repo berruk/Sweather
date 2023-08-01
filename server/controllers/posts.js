@@ -26,6 +26,7 @@ export const getPostsBySearch = async (req, res) => {
 
 export const createPost = async (req, res) => {
     const post = req.body;
+    console.log(req.body.creator);
     const newPost = new PostMessage(post);
 
     try {

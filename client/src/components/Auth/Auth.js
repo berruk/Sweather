@@ -34,7 +34,7 @@ const Auth = () => {
     };
 
     const handleChange = (event) => {
-        setFormValues({...formValues, [event.target.name] : event.target.value });
+        //setFormValues({...formValues, [event.target.name] : event.target.value });
     };
 
     const handleShowPassword = () => setShowPassword((prevState) => !prevState);
@@ -45,9 +45,18 @@ const Auth = () => {
 
     const handleGoogleCallback = async (res) => {
         var userObject = jwtDecode(res?.credential);
-        console.log(userObject);
+        console.log(userObject.given_name);
         try {
             dispatch( { type: 'AUTH', data : {userObject}})
+            setFormValues((prevValues) => ({
+                firstName: 'henlo',
+                lastName: userObject.family_name,
+                email :userObject.email
+
+              }));
+            console.log("form");
+            console.log(formValues);
+            dispatch(signUp(formValues, history));
             history.push('/');
 
         } catch (error) {
