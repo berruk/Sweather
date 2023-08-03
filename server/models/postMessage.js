@@ -5,7 +5,8 @@ import User from './user.js'
 const postSchema = mongoose.Schema({
     title : String,
     message: String,
-    creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    creator: String,
+    id: String,
     tags: [String],
     selectedFile : String,
     likeCount : {

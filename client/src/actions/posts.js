@@ -1,3 +1,4 @@
+import { json } from 'react-router-dom';
 import * as api from '../api';
 import {ActionTypes} from '../constants/actionTypes';
 
@@ -27,7 +28,9 @@ export const createPost = (post) => async (dispatch) => {
 
     try{
         const creator = localStorage.getItem('profile');
-        const { data } = await api.createPost({post: post, creator: creator});
+        const subValue = JSON.parse(creator).userObject.sub;
+        const name = JSON.parse(creator).userObject.name;
+        const { data } = await api.createPost({post: post, id: subValue, creator: name});
 
         dispatch({type: ActionTypes.CREATE, payload : data});
     }
