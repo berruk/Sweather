@@ -1,9 +1,12 @@
-import mongoose from "mongoose";
+import axios from 'axios';
+import mongoose from 'mongoose';
+import User from './user.js'
 
 const postSchema = mongoose.Schema({
     title : String,
     message: String,
     creator: String,
+    id: String,
     tags: [String],
     selectedFile : String,
     likeCount : {

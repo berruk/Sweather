@@ -7,6 +7,9 @@ export default makeStyles({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     backgroundBlendMode: 'darken',
   },
+  cardContent: {
+    margin: '4px', // Adjust the margin value as needed
+  },
   border: {
     border: 'solid',
   },

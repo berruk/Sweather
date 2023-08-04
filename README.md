@@ -1,3 +1,4 @@
+
 # Sweather
 
 This is a web application that provides clothing outfit recommendations based on weather conditions. The project consists of a backend developed in Node.js with a frontend in React and Redux. Additionally, it utilizes RabbitMQ for communication between the Python and Node.js backend modules, and Spark is used in the Python module for data processing.
@@ -13,4 +14,5 @@ This is a web application that provides clothing outfit recommendations based on
 - **Python and Spark Integration (in-progress)**: The Python module utilizes PySpark to perform data processing and analysis for advanced outfit recommendations. 
 
 - **Message Queue with RabbitMQ**: The backend modules communicate through RabbitMQ, allowing efficient and asynchronous message passing.
+
 

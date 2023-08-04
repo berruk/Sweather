@@ -4,7 +4,6 @@ import sweather from '../../images/sweather.png';
 import useStyles from './styles';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from "react-redux"
-import { parse } from "dotenv";
 
 const Navbar = () => {
     const classes = useStyles();
