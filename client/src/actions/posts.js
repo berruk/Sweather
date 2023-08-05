@@ -4,8 +4,11 @@ import {ActionTypes} from '../constants/actionTypes';
 
 export const getPosts = () => async (dispatch) =>
 {
+    const creator = localStorage.getItem('profile');
+    const id = JSON.parse(creator).userObject.sub;
+
     try {
-        const data = await api.fetchPosts();
+        const data = await api.fetchPosts(id);
         dispatch({ type: ActionTypes.FETCH_ALL , payload: data});
     } catch (error) {
         console.log(error);

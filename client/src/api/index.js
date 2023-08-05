@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const API = axios.create({baseURL: 'http://localhost:5000'})
 
-export const fetchPosts = () => API.get('/posts');
+export const fetchPosts = (id) => API.get(`/posts/${id}`, id);
 export const fetchPostsBySearch = (query) => API.get(`/posts/search?query=${query.search || 'none'}`);
 export const createPost = (newPost) => API.post('/posts', newPost);
 export const updatePost = (id, updatedPost) => API.patch(`/posts/${id}`, updatedPost);
