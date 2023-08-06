@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Posts from '../Posts/Posts'
 import Form from '../Form/Form'
 import Weather from '../Weather/Weather'
-import { Container, Grow, Grid, Paper, AppBar, TextField, Button} from '@material-ui/core';
+import { Container, Grow, Grid, Paper, AppBar, TextField, Button, Typography} from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router-dom'
 import  { useDispatch } from 'react-redux'
 import { getPosts, getPostsBySearch } from '../../actions/posts';
@@ -51,7 +51,24 @@ const Home = () =>
             history.push('/');
         }
     }
+
+    let id;
+    try {
+        const user = localStorage.getItem('profile');
+        id = JSON.parse(user).userObject.sub;
+    } 
+    catch (error) {
+        console.log(error);
+    }
     return (
+        id === undefined ? (
+            // Show "Welcome" text when id is undefined
+            <Container maxWidth="xl" className = {classes.container}> 
+            <Typography className = {classes.subtitle} variant="h6"> welcome to </Typography>
+            <Typography className = {classes.maintitle} variant="h6">  Sweather </Typography>
+
+        </Container>
+          ) : (
         <Grow in> 
             <Container maxWidth="xl"> 
                 <Grid container justifyContent="space-between"
@@ -83,7 +100,7 @@ const Home = () =>
                     </Grid>
                 </Grid>
             </Container>
-        </Grow>
+        </Grow>)
             
     );
 }
