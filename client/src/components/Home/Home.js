@@ -9,6 +9,7 @@ import { getPosts, getPostsBySearch } from '../../actions/posts';
 import { getWeather } from '../../actions/weather';
 import { Paginate} from '../Pagination/Pagination';
 import useStyles from './styles'
+
 function useQuery()
 {
     return new URLSearchParams(useLocation().search);
@@ -64,9 +65,7 @@ const Home = () =>
         id === undefined ? (
             // Show "Welcome" text when id is undefined
             <Container maxWidth="xl" className = {classes.container}> 
-            <Typography className = {classes.subtitle} variant="h6"> welcome to </Typography>
-            <Typography className = {classes.maintitle} variant="h6">  Sweather </Typography>
-
+            <Typography className = {classes.maintitle} variant="h6"> welcome to Sweather </Typography>
         </Container>
           ) : (
         <Grow in> 

@@ -1,4 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
+import backgroundImage from '../../images/background.jpg';
+
 
 export default makeStyles((theme) => ({
   appBarSearch: {
@@ -12,7 +14,7 @@ export default makeStyles((theme) => ({
     marginBottom: '1rem',
     display: 'block',
     padding: '8px',
-    maxWidth: '100%', // Set a maximum width of 100%
+    maxWidth: '100%', 
   },
   pagination: {
     borderRadius: 4,
@@ -25,18 +27,33 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     height: '100vh',
     margin: 10,
+    backgroundImage: `url(${backgroundImage})`,
+    padding: '10px',
+    borderRadius: '100px',
   },
   maintitle: {
-    fontSize: '6rem',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    fontSize: '5rem',
     font: 'Arial',
-    color: '#16BFC5',
-    margin: 0,
+    color: '#BDBDBD',
+    margin: 200,
+    border: '2px solid #FFFFFF', // Replace '#000' with the color you desire
+    padding: '20px',
+    borderRadius: '100px',
+    backgroundColor: '#FFFFFF', // Replace '#f0f0f0' with the background color you desire
+
   },
   subtitle: {
     fontSize: '3rem',
     fontFamily: 'Libre Baskerville',
     color: '#BDBDBD',
     margin: 0,
+    border: '2px solid #FFFFFF', // Replace '#000' with the color you desire
+    padding: '10px',
+    borderRadius: '100px',
+    backgroundColor: '#FFFFFF',
   },
   gridContainer: {
     [theme.breakpoints.down('xs')]: {
