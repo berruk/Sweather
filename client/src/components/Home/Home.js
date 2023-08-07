@@ -5,7 +5,7 @@ import Weather from '../Weather/Weather'
 import { Container, Grow, Grid, Paper, AppBar, TextField, Button, Typography} from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router-dom'
 import  { useDispatch } from 'react-redux'
-import { getPosts, getPostsBySearch } from '../../actions/posts';
+import { getPosts, getPostsBySearch, filterPost } from '../../actions/posts';
 import { getWeather } from '../../actions/weather';
 import { Paginate} from '../Pagination/Pagination';
 import useStyles from './styles'
@@ -53,6 +53,12 @@ const Home = () =>
         }
     }
 
+    const getRecommendation = () =>
+    {
+        console.log("recommend");
+        dispatch(filterPost());
+    }
+
     let id;
     try {
         const user = localStorage.getItem('profile');
@@ -78,6 +84,9 @@ const Home = () =>
                     <Grid item xs={12} sm={6} md={3}> 
                     <AppBar className={classes.weatherDisplay} position='static' color='inherit'>
                     <Weather/>                 
+                    <Button  variant="contained" size="small"  
+                    style={{background : '#d1e6e3', margin: '10px 0', borderRadius: '15px',}} 
+                    onClick={getRecommendation} fullWidth> Today's Outfit </Button>    
                     </AppBar>
                     <AppBar className={classes.appBarSearch} position='static' color='inherit'>
                     <TextField 

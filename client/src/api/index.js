@@ -10,3 +10,4 @@ export const deletePost = (id) => API.delete(`/posts/${id}`);
 export const signIn = (formValues) => API.post('/user/signin', formValues);
 export const signUp = (formValues) => API.post('/user/signup', formValues);
 export const fetchWeather = () => API.get('/weather');
+export const filterPost = () => API.get('/clothes/filter');

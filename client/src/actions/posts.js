@@ -62,3 +62,14 @@ export const deletePost = (id) => async (dispatch) =>
         console.log(error);
     }
 }
+
+export const filterPost = () => async (dispatch) =>
+{
+    try {;
+        const { data } = await api.filterPost();
+        console.log(data);
+        dispatch({type: ActionTypes.FILTER, payload: data});
+    } catch (error) {
+        console.log(error);
+    }
+}

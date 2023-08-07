@@ -6,5 +6,6 @@ export const ActionTypes = {
     AUTH: 'AUTH',
     LOGOUT: 'LOGOUT',
     SEARCH: 'SEARCH',
-    FETCH_WEATHER : 'FETCH_WEATHER'
+    FETCH_WEATHER : 'FETCH_WEATHER',
+    FILTER: 'FILTER'
   };
