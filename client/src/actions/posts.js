@@ -1,4 +1,3 @@
-import { json } from 'react-router-dom';
 import * as api from '../api';
 import {ActionTypes} from '../constants/actionTypes';
 

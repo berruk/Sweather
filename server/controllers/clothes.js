@@ -46,19 +46,11 @@ export const getFilteredClothes = async (req, res) => {
 
 export const getWeatherClothes = async (req, res) => {
   try {
-    // Your other controller logic here...
 
-    //const weatherData = await getWeather(req, res);
+    const weatherData = await getWeather();
+    console.log(weatherData);
 
-    // You can use the weatherData obtained from getWeather controller here...
-    console.log("getweather");
-
-    // Your other controller logic here...
-
-    // Send a response back to the client
-    res.status(200).json({ message: 'Other controller completed successfully' });
   } catch (error) {
-    res.status(500).json({ message: 'Internal server error' });
   }
 
 
