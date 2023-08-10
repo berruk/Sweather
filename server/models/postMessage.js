@@ -8,6 +8,14 @@ const postSchema = mongoose.Schema({
     creator: String,
     id: String,
     tags: [String],
+    color: {
+        type: String,
+        enum: ['white', 'black', 'blue'],
+      },
+    weatherConditions: [{
+        type: String,
+        enum: ['Sunny', 'Rainy', 'Cold'],
+    }],
     selectedFile : String,
     likeCount : {
         type:Number,
