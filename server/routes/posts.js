@@ -3,7 +3,7 @@ import { get } from 'mongoose';
 import { getPosts, getPostsBySearch, createPost, updatePost, deletePost} from '../controllers/posts.js';
 const router = express.Router();
 
-router.get('/', getPosts);
+router.get('/:id', getPosts);
 router.get('/search', getPostsBySearch);
 router.post('/', createPost);
 router.patch('/:id', updatePost);

@@ -1,4 +1,5 @@
 import amqp from 'amqplib';
+import { getWeather } from './weather.js';
 
 // Simulate sending a message to the Python server via RabbitMQ
 async function sendRPCMessage(message) {
@@ -40,5 +41,17 @@ export const getFilteredClothes = async (req, res) => {
     .catch((error) => {
         res.status(404).json( {message : `Error communicating with Python server: ${error.message}`});
     });
+
+}
+
+export const getWeatherClothes = async (req, res) => {
+  try {
+
+    const weatherData = await getWeather();
+    console.log(weatherData);
+
+  } catch (error) {
+  }
+
 
 }

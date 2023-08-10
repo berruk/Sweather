@@ -11,6 +11,8 @@ export default (posts = [], action) =>
             return posts.data.map((post) => post._id === action.payload._id ? action.payload : post);
         case ActionTypes.DELETE:
             return posts.data.filter((post) => post._id !== action.payload); 
+        case ActionTypes.FILTER:
+            return action.payload;
         default:
             return posts;
     }
