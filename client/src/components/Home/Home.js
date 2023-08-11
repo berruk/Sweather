@@ -83,7 +83,7 @@ const Home = () =>
                     </Grid>
                     <Grid item xs={12} sm={6} md={3}> 
                     <AppBar className={classes.weatherDisplay} position='static' color='inherit'>
-                    <Weather/>                 
+                    <Weather/>     
                     <Button  variant="contained" size="small"  
                     style={{background : '#d1e6e3', margin: '10px 0', borderRadius: '15px',}} 
                     onClick={getRecommendation} fullWidth> Today's Outfit </Button>    

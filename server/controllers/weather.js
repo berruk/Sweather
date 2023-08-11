@@ -1,19 +1,27 @@
-import mongoose from "mongoose";
 import {OPEN_WEATHER_MAP_API_KEY, OPEN_WEATHER_MAP_API_URL} from "../config.js";
 
 export const getWeather = async (req, res) => {
-  try {
+  try 
+  {
     const weatherData = await fetchWeatherData();
 
-    if (res) {
+    if (res) 
+    {
       res.status(200).json(weatherData);
-    } else {
+    } 
+    else 
+    {
       return weatherData;
     }
-  } catch (error) {
-    if (res) {
+  } 
+  catch (error) 
+  {
+    if (res) 
+    {
       res.status(404).json({ message: error.message });
-    } else {
+    } 
+    else 
+    {
       throw new Error(error.message);
     }
   }
@@ -34,9 +42,11 @@ const fetchWeatherData = async () => {
       country: data.sys.country,
       location: data.name,
     };
-
     return currentWeather;
-  } catch (error) {
+
+  } 
+  catch (error) 
+  {
     throw new Error(error.message);
   }
 };

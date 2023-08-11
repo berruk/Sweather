@@ -1,7 +1,6 @@
 import amqp from 'amqplib';
 import { getWeather } from './weather.js';
 
-// Simulate sending a message to the Python server via RabbitMQ
 async function sendRPCMessage(message) {
   const connection = await amqp.connect('amqp://localhost');
   const channel = await connection.createChannel();
