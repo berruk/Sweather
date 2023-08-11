@@ -7,7 +7,6 @@ import  {useSelector} from 'react-redux';
 const Posts = ({setCurrentId}) => {
     const classes = useStyles();
     const posts = useSelector((state) => state.posts);
-
     return (
         !posts?.data?.length ? <CircularProgress /> : ( 
         <Grid className={classes.container} container alignItems="stretch" spacing={3}> 

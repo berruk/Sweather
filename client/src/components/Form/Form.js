@@ -38,7 +38,7 @@ const Form = ({currentId, setCurrentId}) => {
     const clear = () =>
     {
         setCurrentId(null); //reset
-        setPostData({creator :'', title: '', message:'', tags:'', selectedFile:''})
+        setPostData({creator :'', title: '', message:'', tags:'', selectedFile:'', color:'', weather:''})
     }
 
     const weatherOptions = [

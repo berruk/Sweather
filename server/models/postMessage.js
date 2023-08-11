@@ -11,16 +11,12 @@ const postSchema = mongoose.Schema({
     color: {
         type: String,
         enum: ['white', 'black', 'blue'],
-      },
+    },
     weatherConditions: [{
         type: String,
-        enum: ['Sunny', 'Rainy', 'Cold'],
+        enum: ['sunny', 'Rainy', 'cold'],
     }],
     selectedFile : String,
-    likeCount : {
-        type:Number,
-        default : 0
-    },
     createdAt : {
         type : Date,
         default : new Date()

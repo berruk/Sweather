@@ -29,9 +29,17 @@ export const getPostsBySearch = async (req, res) => {
 }
 
 export const createPost = async (req, res) => {
-    const post = req.body;
-    const newPost = new PostMessage(post);
-    console.log(post)
+    
+    const newPost = new PostMessage({
+        title: req.body.post.title,
+        message: req.body.post.message,
+        selectedFile: req.body.post.selectedFile,
+        color: req.body.post.color,
+        weatherConditions: [req.body.post.weather],
+        id: req.body.id,
+        creator: req.body.creator
+    });
+    console.log(newPost);
     try {
         await newPost.save(); 
         res.status(200).json(newPost);
