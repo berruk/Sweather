@@ -57,7 +57,7 @@ const Form = ({currentId, setCurrentId}) => {
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
                 <Typography variant="h6">{currentId ? 'Edit' : 'Upload'} an Item </Typography>
                 <TextField name="creator" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(e) => setPostData({...postData, title: e.target.value})}/>
-                <TextField name="creator" variant="outlined" label="Message" fullWidth value={postData.message} onChange={(e) => setPostData({...postData, message: e.target.value})}/>
+                <TextField name="creator" variant="outlined" label="About" fullWidth value={postData.message} onChange={(e) => setPostData({...postData, message: e.target.value})}/>
                 <Dropdown options={colorOptions} label="Color" value={postData.color} onChange={(e) => setPostData({...postData, color: e})} />
                 <Dropdown options={weatherOptions} label="Weather" value={postData.weather} onChange={(e) => setPostData({...postData, weather: e})} />
                 <div className={classes.fileInput}>

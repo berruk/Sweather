@@ -11,12 +11,11 @@ import { deletePost } from "../../../actions/posts";
 const Post = ({post, setCurrentId}) => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    console.log(post);
     return (
         <Card className={classes.card}>
             <CardMedia className={classes.media} image={post.selectedFile} title ={post.title} height={3}/>
             <div className={classes.overlay}>
-                <Typography variant="h6"> {post.creator}</Typography>
+                <Typography variant="h6"> {post.title}</Typography>
                 <Typography variant="body2"> {moment(post.createdAt).fromNow()}</Typography>
             </div>
 
@@ -30,9 +29,8 @@ const Post = ({post, setCurrentId}) => {
             <div>
                 <Typography variant="body2" color="textSecondary"> {post.tags.map((tag) => `#${tag} `)}</Typography>
             </div>
-            <Typography className={classes.title} variant="h5" color="textSecondary"> {post.title}</Typography>
             <CardContent>
-                <Typography variant="h5" gutterBottom>  {post.message} </Typography>
+                <Typography variant="h6" gutterBottom>  {post.message} </Typography>
                 <ColoredDotTypography color={post.color} text={post.weatherConditions[0]} />
             </CardContent>
             <CardActions className={classes.CardActions}>

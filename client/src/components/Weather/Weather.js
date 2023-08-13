@@ -14,23 +14,17 @@ const Weather = () => {
 
   return (
     <div>
-      <CardContent >       
-        <Typography variant="h5" color="textSecondary">
+        <Typography style={{padding: '10px' }} variant="h5" color="textSecondary">
           {formattedTemperature}
           <span>&#176;</span>
           {"C"}
         </Typography>
-      </CardContent>
-      <CardContent >
-        <Typography variant="h6" color="textSecondary">
+        <Typography style={{ padding: '10px' }} variant="h6" color="textSecondary">
           {formattedDescription}
         </Typography>
-      </CardContent>
-      <CardContent >
-        <Typography variant="h6" color="textSecondary">
+        <Typography style={{ padding: '10px' }} variant="h6" color="textSecondary">
           {location}
         </Typography>       
-      </CardContent> 
     </div>
   );
 };

@@ -62,7 +62,7 @@ const Home = () =>
     let id;
     try {
         const user = localStorage.getItem('profile');
-        id = JSON.parse(user).userObject.sub;
+        id = JSON.parse(user).id;
     } 
     catch (error) {
         console.log(error);

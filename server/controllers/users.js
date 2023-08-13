@@ -6,24 +6,42 @@ import User from "../models/user.js";
 
 export const signIn = async (req, res) =>
 {
-    const {email, password} = req.body;
+    const {email, password, firstName, lastName} = req.body;
 
     try {
         const findUser = await User.findOne({email});
-        if(!findUser)
+        let user = findUser;   
+        if (req.body.hasOwnProperty('id')) //google sign in
         {
-            res.status(404).json({message: "User not found."});
+            if(!findUser)   //if not already signed up
+            {
+                try {
+                    const user = await User.create({email: email, name: `${firstName} ${lastName}`, googleid: req.body.id});
+                    console.log('User created:', user);
+                  } catch (error) {
+                    console.error('Error creating user:', error);
+                  }
+            }
+            const jwtoken = jwt.sign({ email: user.email, id: user.id }, 'test', {expiresIn: '1h'});
+            res.status(200).json({ result: user, jwtoken });
         }
-
-        const passwordCorrect = await bcrypt.compare(password, findUser.password);
-        if(!passwordCorrect)
+        else
         {
-            res.status(400).json({message: "Password incorrect."});
-        }
+            if(!findUser)
+            {
+                res.status(404).json({message: "User not found."});
+            }
 
-        const jwtoken = jwt.sign({email: findUser.email, id: findUser._id}, 'test', {expiresIn: "1"});
+            const passwordCorrect = await bcrypt.compare(password, findUser.password);
+            if(!passwordCorrect)
+            {
+                res.status(400).json({message: "Password incorrect."});
+            }
 
-        res.status(200).json({result: findUser, jwtoken});
+            const jwtoken = jwt.sign({email: findUser.email, id: findUser._id}, 'test', {expiresIn: '1h'});
+            res.status(200).json({result: findUser, jwtoken});
+
+        }      
 
     } catch (error) {
         res.status(500);

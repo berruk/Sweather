@@ -25,15 +25,7 @@ const Navbar = () => {
         if (localStorage.getItem('profile'))
         {
             const parsedUser = JSON.parse(localStorage.getItem('profile'));
-            
-            if (parsedUser.hasOwnProperty('userObject')){
-                setDisplayName(parsedUser?.userObject?.given_name + " " + parsedUser?.userObject?.family_name);
-            }
-            else
-            {
-                setDisplayName(parsedUser.result.name);
-            }
-            
+            setDisplayName(parsedUser.result.name);      
             setUser(parsedUser);
         }
            

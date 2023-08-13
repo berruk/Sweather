@@ -8,15 +8,15 @@ import { useDispatch } from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import {signIn, signUp} from '../../actions/auth';
 
-const initValues = {
-    firstName : '', lastName : '', email : '', password: '', confirmPassword: ''
-}
+
 
 const Auth = () => {
     const classes = useStyles();
     const [showPassword, setShowPassword] = useState(false);
     const [isSignUp, setIsSignUp] = useState(false);
-    const [formValues, setFormValues] = useState(initValues);
+    const [formValues, setFormValues] = useState({
+        firstName : '', lastName : '', email : '', password: '', confirmPassword: '', id: ''
+    });
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -45,18 +45,19 @@ const Auth = () => {
 
     const handleGoogleCallback = async (res) => {
         var userObject = jwtDecode(res?.credential);
-        console.log(userObject.given_name);
         try {
-            dispatch( { type: 'AUTH', data : {userObject}})
-            setFormValues((prevValues) => ({
-                firstName: 'henlo',
+            dispatch( { type: 'AUTH', data : {
+                firstName: userObject.given_name,
                 lastName: userObject.family_name,
-                email :userObject.email
-
-              }));
-            console.log("form");
-            console.log(formValues);
-            dispatch(signUp(formValues, history));
+                email: userObject.email,
+                id: userObject.sub,
+              }})
+            dispatch(signIn({
+                firstName: userObject.given_name,
+                lastName: userObject.family_name,
+                email: userObject.email,
+                id: userObject.sub,
+              }, history));
             history.push('/');
 
         } catch (error) {
