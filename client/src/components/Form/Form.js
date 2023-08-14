@@ -5,6 +5,7 @@ import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
 import {createPost, updatePost} from '../../actions/posts';
 import Dropdown from '../DropDown/DropDown.js'
+import { useHistory } from 'react-router-dom';
 
 const Form = ({currentId, setCurrentId}) => {
     const [postData, setPostData] = useState({creator :'', title: '', message:'', tags:'', selectedFile:'', color:'', weather:''}); //initial properties  
@@ -14,6 +15,7 @@ const Form = ({currentId, setCurrentId}) => {
 
     const classes = useStyles();
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(() => {
         if(post) setPostData(post); 
@@ -30,8 +32,10 @@ const Form = ({currentId, setCurrentId}) => {
         }
         else{          
             dispatch(createPost(postData));
+            
         }
         
+        window.location.reload();
         clear();
     }
 

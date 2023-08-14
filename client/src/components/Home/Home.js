@@ -59,16 +59,16 @@ const Home = () =>
         dispatch(filterPost());
     }
 
-    let id;
+    let localUser;
     try {
         const user = localStorage.getItem('profile');
-        id = JSON.parse(user).id;
+        localUser = JSON.parse(user);
     } 
     catch (error) {
         console.log(error);
     }
     return (
-        id === undefined ? (
+        localUser === undefined ? (
             // Show "Welcome" text when id is undefined
             <Container maxWidth="xl" className = {classes.container}> 
             <Typography className = {classes.maintitle} variant="h6"> welcome to Sweather </Typography>

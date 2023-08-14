@@ -1,11 +1,11 @@
 import * as api from '../api';
 import {ActionTypes} from '../constants/actionTypes';
-
+import { useHistory } from 'react-router-dom';
 export const getPosts = () => async (dispatch) =>
 {
     try {
         const creator = localStorage.getItem('profile');
-        const id = JSON.parse(creator).id;
+        const id = JSON.parse(creator).result._id;
         const data = await api.fetchPosts(id);
         dispatch({ type: ActionTypes.FETCH_ALL , payload: data});
     } catch (error) {
@@ -29,10 +29,9 @@ export const createPost = (post) => async (dispatch) => {
 
     try{
         const creator = localStorage.getItem('profile');
-        const subValue = JSON.parse(creator).userObject.sub;
-        const name = JSON.parse(creator).userObject.name;
-        const { data } = await api.createPost({post: post, id: subValue, creator: name});
-
+        const id = JSON.parse(creator).result._id;
+        const name = JSON.parse(creator).result.name;
+        const { data } = await api.createPost({post: post, id: id, creator: name});
         dispatch({type: ActionTypes.CREATE, payload : data});
     }
     catch (error){
@@ -44,7 +43,6 @@ export const updatePost = (id, post) => async (dispatch) =>
 {
     try {       
         const { data } = await api.updatePost(id, post);
-        console.log(data);
         dispatch({type : ActionTypes.UPDATE, payload: data})
     } 
     catch (error) {
